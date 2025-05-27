@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16.4
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: saas-starter-kit
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+
+  pgadmin:
+    image: dpage/pgadmin4:9.3
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: talktopaul@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: henkin123
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pgadmin.rule=Host(`pgadmin.henkin.world`)"
+      - "traefik.http.routers.pgadmin.entrypoints=websecure"
+      - "traefik.http.routers.pgadmin.tls.certresolver=letsencrypt"
+      - "traefik.http.services.pgadmin.loadbalancer.server.port=80"
+    networks:
+      - app_network
+
+  henkin-world:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: henkin-world-react:latest 
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://admin:admin@db:5432/saas-starter-kit
+      - NEXTAUTH_URL=https://henkin.world
+      - NODE_ENV=production
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.henkin-world.rule=Host(`henkin.world`)"
+      - "traefik.http.routers.henkin-world.entrypoints=websecure"
+      - "traefik.http.routers.henkin-world.tls.certresolver=letsencrypt"
+      - "traefik.http.services.henkin-world.loadbalancer.server.port=4002"
+    networks:
+      - proxy
+      - app_network
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+
+networks:
+  proxy:
+    external: true 
+  app_network:
+    driver: bridge 
