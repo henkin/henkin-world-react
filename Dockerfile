@@ -48,4 +48,4 @@ ENV NODE_ENV production
 EXPOSE 4002
 
 # Run migrations, generate prisma client, and then start the application
-CMD ["sh", "-c", "npm run migrate:deploy && prisma generate && npm run start"] 
+CMD ["sh", "-c", "npm run migrate:deploy && npx prisma generate && npm run start"] 
