@@ -16,13 +16,13 @@ services:
       - app_network
 
   pgadmin:
-    image: dpage/pgadmin4:9.3
+    image: dpage/pgadmin4:9.2
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: talktopaul@gmail.com
       PGADMIN_DEFAULT_PASSWORD: henkin123
-    ports:
-      - "5050:80"
+    # ports:
+    #   - "5050:80"
     depends_on:
       - db
     volumes:
