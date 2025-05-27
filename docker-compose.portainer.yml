@@ -15,22 +15,24 @@ services:
     networks:
       - app_network
 
-  pgadmin:
+  pga:
     image: dpage/pgadmin4:9.2
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: talktopaul@gmail.com
       PGADMIN_DEFAULT_PASSWORD: henkin123
+    ports:
+      - "5050:80"
     depends_on:
       - db
     volumes:
       - pgadmin_data:/var/lib/pgadmin
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.pgadmin.rule=Host(`pgadmin.henkin.world`)"
-      - "traefik.http.routers.pgadmin.entrypoints=websecure"
-      - "traefik.http.routers.pgadmin.tls.certresolver=letsencrypt"
-      - "traefik.http.services.pgadmin.loadbalancer.server.port=80"
+      - "traefik.http.routers.pga.rule=Host(`pga.henkin.world`)"
+      - "traefik.http.routers.pga.entrypoints=websecure"
+      - "traefik.http.routers.pga.tls.certresolver=letsencrypt"
+      - "traefik.http.services.pga.loadbalancer.server.port=80"
     networks:
       - proxy
       - app_network
@@ -46,6 +48,7 @@ services:
     environment:
       - DATABASE_URL=postgresql://admin:admin@db:5432/saas-starter-kit
       - NEXTAUTH_URL=https://henkin.world
+      - NEXTAUTH_SECRET="rZTFtfNuSMajLnfFrWT2PZ3lX8WZv7W/Xs2H8hkEY6g="
       - NODE_ENV=production
     labels:
       - "traefik.enable=true"
