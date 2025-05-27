@@ -38,6 +38,7 @@ COPY --from=builder /app/instrumentation.ts ./instrumentation.ts
 COPY --from=builder /app/middleware.ts ./middleware.ts
 COPY --from=builder /app/next-i18next.config.js ./next-i18next.config.js
 COPY --from=builder /app/locales ./locales
+COPY --from=builder /app/prisma ./prisma
 
 # Set NEXT_TELEMETRY_DISABLED to 1 to disable telemetry
 ENV NEXT_TELEMETRY_DISABLED 1
