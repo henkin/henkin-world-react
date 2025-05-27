@@ -47,5 +47,5 @@ ENV NODE_ENV production
 # Expose the port the app runs on
 EXPOSE 4002
 
-# Run migrations and then start the application
-CMD ["sh", "-c", "npm run migrate:deploy && npm run start"] 
+# Run migrations, generate prisma client, and then start the application
+CMD ["sh", "-c", "npm run migrate:deploy && prisma generate && npm run start"] 
