@@ -40,6 +40,11 @@ const providers: Provider[] = [];
 const sessionMaxAge = 14 * 24 * 60 * 60; // 14 days
 const useSecureCookie = env.appUrl.startsWith('https://');
 
+console.log('GITHUB_CLIENT_ID:', process.env.GITHUB_CLIENT_ID)
+console.log('GITHUB_CLIENT_SECRET:', process.env.GITHUB_CLIENT_SECRET)
+console.log('AUTH_PROVIDERS:', process.env.AUTH_PROVIDERS)
+console.log('GOOGLE_CLIENT_ID:', process.env.GOOGLE_CLIENT_ID)
+console.log('GOOGLE_CLIENT_SECRET:', process.env.GOOGLE_CLIENT_SECRET)
 export const sessionTokenCookieName =
   (useSecureCookie ? '__Secure-' : '') + 'next-auth.session-token';
 
