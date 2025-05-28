@@ -27,12 +27,12 @@ ssh $REMOTE_HOST "docker restart traefik"
 echo "[4/4] Showing container status ..."
 ssh $REMOTE_HOST "cd $REMOTE_DIR && docker compose -f $COMPOSE_FILE ps"
 
-echo "[Logs] Streaming logs for henkin-world service. Press Ctrl+C to stop."
-ssh $REMOTE_HOST "cd $REMOTE_DIR && docker compose -f $COMPOSE_FILE logs -f henkin-world"
-
 # 4. Restart Traefik to pick up new configuration
 echo "[4/4] Restarting Traefik ..."
 ssh $REMOTE_HOST "docker restart traefik"
+
+echo "[Logs] Streaming logs for henkin-world service. Press Ctrl+C to stop."
+ssh $REMOTE_HOST "cd $REMOTE_DIR && docker compose -f $COMPOSE_FILE logs -f henkinworld"
 
 echo "Deployment complete!"
  
