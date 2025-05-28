@@ -19,7 +19,7 @@ ssh $REMOTE_HOST "cd $REMOTE_DIR && docker compose -f $COMPOSE_FILE down"
 
 # 3. Start containers in detached mode
 echo "[3/4] Starting containers ..."
-ssh $REMOTE_HOST "cd $REMOTE_DIR && docker compose -f $COMPOSE_FILE up -d --force-recreate"
+ssh $REMOTE_HOST "cd $REMOTE_DIR && docker compose -f $COMPOSE_FILE up -d --build --force-recreate"
 
 echo "[3.5/4] Restarting Traefik ..."
 ssh $REMOTE_HOST "docker restart traefik"
@@ -30,9 +30,9 @@ ssh $REMOTE_HOST "cd $REMOTE_DIR && docker compose -f $COMPOSE_FILE ps"
 echo "[Logs] Streaming logs for henkin-world service. Press Ctrl+C to stop."
 ssh $REMOTE_HOST "cd $REMOTE_DIR && docker compose -f $COMPOSE_FILE logs -f henkin-world"
 
-# # 4. Restart Traefik to pick up new configuration
-# echo "[4/4] Restarting Traefik ..."
-# ssh $REMOTE_HOST "docker restart traefik"
+# 4. Restart Traefik to pick up new configuration
+echo "[4/4] Restarting Traefik ..."
+ssh $REMOTE_HOST "docker restart traefik"
 
 echo "Deployment complete!"
  

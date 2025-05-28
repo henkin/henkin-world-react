@@ -31,6 +31,12 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     if (env.darkModeEnabled) {
       applyTheme(localStorage.getItem('theme') as Theme);
     }
+
+    // Print app version in blue
+    console.log(
+      `%cApp version: ${app.version}`,
+      'color: #2563eb; font-weight: bold; font-size: 1.1em'
+    )
   }, []);
 
   const getLayout =
