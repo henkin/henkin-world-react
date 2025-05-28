@@ -36,11 +36,11 @@ services:
     networks:
       - proxy
       - app_network
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:80"]
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 5
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   henkin-world:
     build:
@@ -55,20 +55,25 @@ services:
       - NEXTAUTH_URL=https://henkin.world
       - NEXTAUTH_SECRET="rZTFtfNuSMajLnfFrWT2PZ3lX8WZv7W/Xs2H8hkEY6g="
       - NODE_ENV=production
+    ports:
+      - "4002:4002"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.henkin-world.rule=Host(`henkin.world`)"
       - "traefik.http.routers.henkin-world.entrypoints=websecure"
       - "traefik.http.routers.henkin-world.tls.certresolver=letsencrypt"
       - "traefik.http.services.henkin-world.loadbalancer.server.port=4002"
+      - "traefik.http.services.henkin-world.loadbalancer.server.scheme=http"
+      - "traefik.http.services.henkin-world.loadbalancer.healthcheck.timeout=30s"
+      - "traefik.http.services.henkin-world.loadbalancer.healthcheck.interval=10s"
     networks:
       - proxy
       - app_network
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:4002"]
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 5
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:4002"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
 volumes:
   postgres_data:
