@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: admin
       POSTGRES_DB: saas-starter-kit
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -21,8 +21,6 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: talktopaul@gmail.com
       PGADMIN_DEFAULT_PASSWORD: henkin123
-    # ports:
-    #   - "13743:80"
     depends_on:
       - db
     volumes:
@@ -36,11 +34,6 @@ services:
     networks:
       - proxy
       - app_network
-    healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:80"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
 
   henkin-world:
     build:
@@ -69,16 +62,9 @@ services:
       - "traefik.http.middlewares.henkin-world-redirect.redirectscheme.permanent=true"
       - "traefik.http.services.henkin-world.loadbalancer.server.port=4002"
       - "traefik.http.services.henkin-world.loadbalancer.server.scheme=http"
-      - "traefik.http.services.henkin-world.loadbalancer.healthcheck.timeout=30s"
-      - "traefik.http.services.henkin-world.loadbalancer.healthcheck.interval=10s"
     networks:
       - proxy
       - app_network
-    # healthcheck:
-    #   test: ["CMD", "nc", "-z", "localhost", "4002"]
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 5
 
 volumes:
   postgres_data:
