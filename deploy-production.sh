@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Usage: ./deploy-production.sh
+# Usage: ./deploy-production.sh [--no-build]
 # This script deploys the current project to the production server using SSH and docker compose.
 
 set -e
@@ -8,6 +8,18 @@ set -e
 REMOTE_HOST="hserver"
 REMOTE_DIR="~/henkin-world-react"
 COMPOSE_FILE="docker-compose.portainer.yml"
+
+NO_BUILD=0
+
+# Parse arguments
+for arg in "$@"; do
+  case $arg in
+    --no-build)
+      NO_BUILD=1
+      shift
+      ;;
+  esac
+done
 
 # 1. Copy project files to the remote server (excluding node_modules, .git, build artifacts)
 echo "[1/4] Syncing project files to $REMOTE_HOST:$REMOTE_DIR ..."
@@ -19,7 +31,11 @@ ssh $REMOTE_HOST "cd $REMOTE_DIR && docker compose -f $COMPOSE_FILE down"
 
 # 3. Start containers in detached mode
 echo "[3/4] Starting containers ..."
-ssh $REMOTE_HOST "cd $REMOTE_DIR && docker compose -f $COMPOSE_FILE up -d --build --force-recreate"
+if [ "$NO_BUILD" -eq 1 ]; then
+  ssh $REMOTE_HOST "cd $REMOTE_DIR && docker compose -f $COMPOSE_FILE up -d --force-recreate"
+else
+  ssh $REMOTE_HOST "cd $REMOTE_DIR && docker compose -f $COMPOSE_FILE up -d --build --force-recreate"
+fi
 
 echo "[3.5/4] Restarting Traefik ..."
 ssh $REMOTE_HOST "docker restart traefik"

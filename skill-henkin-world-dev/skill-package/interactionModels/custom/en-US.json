@@ -1,0 +1,84 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "chi chi",
+            "intents": [
+                {
+                    "name": "CatchAllIntent",
+                    "slots": [
+                        {
+                            "name": "phrase",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "ask chi chi to {phrase}",
+                        "ask chi chi if {phrase}",
+                        "ask chi chi for {phrase}",
+                        "ask chi chi about {phrase}",
+                        "ask chi chi that {phrase}",
+                        "tell chi chi to {phrase}",
+                        "tell chi chi if {phrase}",
+                        "tell chi chi for {phrase}",
+                        "tell chi chi about {phrase}",
+                        "tell chi chi that {phrase}",
+                        "to {phrase}",
+                        "to do {phrase}",
+                        "if {phrase}",
+                        "for {phrase}",
+                        "about {phrase}",
+                        "whether {phrase}",
+                        "when {phrase}",
+                        "where {phrase}",
+                        "why {phrase}",
+                        "who {phrase}",
+                        "what {phrase}",
+                        "how {phrase}",
+                        "tell me {phrase}",
+                        "ask {phrase}",
+                        "give me {phrase}",
+                        "show me {phrase}",
+                        "let me know {phrase}",
+                        "do {phrase}",
+                        "say {phrase}",
+                        "explain {phrase}",
+                        "find {phrase}",
+                        "help with {phrase}",
+                        "I want to know {phrase}",
+                        "can you {phrase}",
+                        "could you {phrase}",
+                        "would you {phrase}",
+                        "please {phrase}"
+                    ]
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "HelloWorldIntent",
+                    "slots": [],
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                  "name": "AMAZON.FallbackIntent",
+                  "samples": []
+                }
+            ],
+            "types": []
+        }
+    }
+  }
+  

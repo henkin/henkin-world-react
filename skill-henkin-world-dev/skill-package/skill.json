@@ -1,0 +1,46 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Chi Chi Alexa Skill",
+          "examplePhrases": [
+            "Alexa open chi chi",
+            "Alexa ask chi chi to tell me a joke",
+            "Alexa tell chi chi to find a recipe for cookies",
+            "Alexa ask chi chi if the sky is blue"
+          ],
+          "name": "skill-chi-chi-dev",
+          "description": "Handles spoken phrases for Chi Chi and sends them to an external API."
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Try the following: 1. Say 'Alexa, open chi chi'. 2. Then say 'tell me a joke' or 'what is the weather'. 3. You can also try direct requests like 'Alexa, ask chi chi to tell me a story' or 'Alexa, tell chi chi to find information about NASA'.",
+      "category": "KNOWLEDGE_AND_TRIVIA",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "https://tunnel.henkin.world/api/alexa",
+          "sslCertificateType": "Wildcard"
+        },
+        "interfaces": []
+      }
+    },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "usesPersonalInfo": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "containsAds": false,
+      "locales": {
+        "en-US": {
+          "privacyPolicyUrl": "",
+          "termsOfUseUrl": ""
+        }
+      }
+    }
+  }
+}

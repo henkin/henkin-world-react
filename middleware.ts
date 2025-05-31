@@ -59,6 +59,7 @@ const generateCSP = (): string => {
 const unAuthenticatedRoutes = [
   '/api/hello',
   '/api/health',
+  '/api/alexa',
   '/api/auth/**',
   '/api/oauth/**',
   '/api/scim/v2.0/**',

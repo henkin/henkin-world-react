@@ -82,11 +82,12 @@ async function handleSubscriptionUpdated(event: Stripe.Event) {
     cancel_at,
     id,
     status,
-    current_period_end,
-    current_period_start,
     customer,
     items,
   } = event.data.object as Stripe.Subscription;
+
+  const current_period_start = items.data[0]?.current_period_start;
+  const current_period_end = items.data[0]?.current_period_end;
 
   const subscription = await getBySubscriptionId(id);
   if (!subscription) {
@@ -114,8 +115,10 @@ async function handleSubscriptionUpdated(event: Stripe.Event) {
 }
 
 async function handleSubscriptionCreated(event: Stripe.Event) {
-  const { customer, id, current_period_start, current_period_end, items } =
-    event.data.object as Stripe.Subscription;
+  const { customer, id, items } = event.data.object as Stripe.Subscription;
+
+  const current_period_start = items.data[0]?.current_period_start;
+  const current_period_end = items.data[0]?.current_period_end;
 
   await createStripeSubscription({
     customerId: customer as string,
