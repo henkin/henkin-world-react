@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "chi chi",
+            "invocationName": "henkin dev",
             "intents": [
                 {
                     "name": "CatchAllIntent",
@@ -12,16 +12,16 @@
                         }
                     ],
                     "samples": [
-                        "ask chi chi to {phrase}",
-                        "ask chi chi if {phrase}",
-                        "ask chi chi for {phrase}",
-                        "ask chi chi about {phrase}",
-                        "ask chi chi that {phrase}",
-                        "tell chi chi to {phrase}",
-                        "tell chi chi if {phrase}",
-                        "tell chi chi for {phrase}",
-                        "tell chi chi about {phrase}",
-                        "tell chi chi that {phrase}",
+                        "ask henkin dev to {phrase}",
+                        "ask henkin dev if {phrase}",
+                        "ask henkin dev for {phrase}",
+                        "ask henkin dev about {phrase}",
+                        "ask henkin dev that {phrase}",
+                        "tell henkin dev to {phrase}",
+                        "tell henkin dev if {phrase}",
+                        "tell henkin dev for {phrase}",
+                        "tell henkin dev about {phrase}",
+                        "tell henkin dev that {phrase}",
                         "to {phrase}",
                         "to do {phrase}",
                         "if {phrase}",
