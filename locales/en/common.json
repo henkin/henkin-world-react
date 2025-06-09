@@ -147,11 +147,11 @@
   "verify-account-expired": "This verification link has expired. Please enter the email address associated with your account, and we'll send you another verification link.",
   "verify-account-link-sent": "Verification link sent. Please check your email.",
   "homepage-title": "Henkin World!",
-  "sign-up-title": "Sign Up | BoxyHQ ",
-  "login-title": "Login | BoxyHQ",
-  "forgot-password-title": "Reset Password | BoxyHQ",
-  "magic-link-title": "Login With Magic Link | BoxyHQ",
-  "resend-token-title": "Resend Email Token | BoxyHQ",
+  "sign-up-title": "Sign Up | henkin.world ",
+  "login-title": "Login | henkin.world",
+  "forgot-password-title": "Reset Password | henkin.world",
+  "magic-link-title": "Login With Magic Link | henkin.world",
+  "resend-token-title": "Resend Email Token | henkin.world",
   "invitation-title": "You've been invited to join ",
   "email-address": "Email Address",
   "email-address-description": "The email address you use to sign in to your account.",
@@ -246,5 +246,7 @@
   "internal-server-error": "Internal Server Error !",
   "unable-to-find": "We're unable to find out what's happening! We suggest you to",
   "try-again-later": "or visit here later.",
-  "multiple-sso-teams": "User belongs to multiple teams with SSO enabled. Please enter your team slug to get started."
+  "multiple-sso-teams": "User belongs to multiple teams with SSO enabled. Please enter your team slug to get started.",
+  "inbox": "Inbox",
+  "hello-inbox": "Hello from Inbox"
 }

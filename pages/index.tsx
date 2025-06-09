@@ -26,7 +26,7 @@ const Home: NextPageWithLayout = () => {
         <div className="navbar bg-base-100 px-0 sm:px-1">
           <div className="flex-1">
             <Link href="/" className="btn btn-ghost text-xl normal-case">
-              BoxyHQ
+              henkin.world
             </Link>
           </div>
           <div className="flex-none">
@@ -36,6 +36,7 @@ const Home: NextPageWithLayout = () => {
                   <button
                     className="bg-none p-0 rounded-lg flex items-center justify-center"
                     onClick={toggleTheme}
+                    aria-label={t('toggle-dark-mode')}
                   >
                     <selectedTheme.icon className="w-5 h-5" />
                   </button>

@@ -24,6 +24,10 @@ const generateCSP = (): string => {
       '*.boxyhq.com',
       '*.dicebear.com',
       'data:',
+      'henkin.world',
+      '*.henkin.world',
+      'localhost',
+      '127.0.0.1',
     ],
     'script-src': [
       "'self'",
@@ -31,8 +35,19 @@ const generateCSP = (): string => {
       "'unsafe-eval'",
       '*.gstatic.com',
       '*.google.com',
+      'henkin.world',
+      '*.henkin.world',
+      'localhost',
+      '127.0.0.1',
     ],
-    'style-src': ["'self'", "'unsafe-inline'"],
+    'style-src': [
+      "'self'",
+      "'unsafe-inline'",
+      'henkin.world',
+      '*.henkin.world',
+      'localhost',
+      '127.0.0.1',
+    ],
     'connect-src': [
       "'self'",
       '*.google.com',
@@ -40,9 +55,27 @@ const generateCSP = (): string => {
       'boxyhq.com',
       '*.ingest.sentry.io',
       '*.mixpanel.com',
+      'henkin.world',
+      '*.henkin.world',
+      'localhost',
+      '127.0.0.1',
     ],
-    'frame-src': ["'self'", '*.google.com', '*.gstatic.com'],
-    'font-src': ["'self'"],
+    'frame-src': [
+      "'self'",
+      '*.google.com',
+      '*.gstatic.com',
+      'henkin.world',
+      '*.henkin.world',
+      'localhost',
+      '127.0.0.1',
+    ],
+    'font-src': [
+      "'self'",
+      'henkin.world',
+      '*.henkin.world',
+      'localhost',
+      '127.0.0.1',
+    ],
     'object-src': ["'none'"],
     'base-uri': ["'self'"],
     'form-action': ["'self'"],
@@ -136,5 +169,7 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|api/auth/session).*)'],
+  matcher: [
+    '/((?!_next/static|_next/image|favicon.ico|api/auth/session|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp)$).*)',
+  ],
 };
