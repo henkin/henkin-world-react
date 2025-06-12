@@ -23,12 +23,8 @@ services:
       - db
     volumes:
       - pgadmin_data:/var/lib/pgadmin
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.pga.rule=Host(`pga.henkin.world`)"
-      - "traefik.http.routers.pga.entrypoints=websecure"
-      - "traefik.http.routers.pga.tls.certresolver=letsencrypt"
-      - "traefik.http.services.pga.loadbalancer.server.port=80"
+    ports:
+      - "8080:80"      
     networks:
       - proxy
       - app_network
@@ -60,18 +56,6 @@ services:
       - GOOGLE_CLIENT_SECRET=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
     ports:
       - "4002:4002"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.henkinworld.rule=Host(`henkin.world`)"
-      - "traefik.http.routers.henkinworld.entrypoints=websecure"
-      - "traefik.http.routers.henkinworld.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.henkinworld-http.rule=Host(`henkin.world`)"
-      - "traefik.http.routers.henkinworld-http.entrypoints=web"
-      - "traefik.http.routers.henkinworld-http.middlewares=henkin-world-redirect"
-      - "traefik.http.middlewares.henkin-world-redirect.redirectscheme.scheme=https"
-      - "traefik.http.middlewares.henkin-world-redirect.redirectscheme.permanent=true"
-      - "traefik.http.services.henkin-world.loadbalancer.server.port=4002"
-      - "traefik.http.services.henkin-world.loadbalancer.server.scheme=http"
     networks:
       - proxy
       - app_network

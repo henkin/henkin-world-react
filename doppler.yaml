@@ -1,0 +1,4 @@
+setup:
+  - project: henkin-world
+    config: dev_personal
+
